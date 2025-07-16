@@ -1,0 +1,12 @@
+# CMake build directory
+build/
+
+# Qt Creator user config
+*.user
+
+# Compiled files
+*.o
+*.obj
+*.exe
+*.out
+
