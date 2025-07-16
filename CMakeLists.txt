@@ -14,9 +14,9 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        Messages.cpp
-        Messages.h
-        Messages.ui
+        messages.cpp
+        messages.h
+        messages.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -40,6 +40,7 @@ else()
 
         add_executable(Messages
             ${PROJECT_SOURCES}
+            viewanswersdialogue.h viewanswersdialogue.cpp viewanswersdialogue.ui
 
 
 

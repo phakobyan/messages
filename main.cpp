@@ -1,10 +1,10 @@
-#include "Messages.h"
+#include "messages.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Messages w;
+    messages w;
     w.show();
     return a.exec();
 }
