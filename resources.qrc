@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>images/fb-share.png</file>
+        <file>images/Google_Pay_Logo.png</file>
+        <file>images/is.png</file>
+    </qresource>
+</RCC>

@@ -4,21 +4,23 @@
 #include <QString>
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class messages;
+class Messages;
 }
 QT_END_NAMESPACE
 
-class messages : public QMainWindow
+class Messages : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    messages(QWidget *parent = nullptr);
-    ~messages();
+    Messages(QWidget *parent = nullptr);
+    ~Messages();
 
 private:
-    QMap<QString, QString> answers_;
     void SetConnections();
-    Ui::messages *ui;
+
+
+    QMap<QString, QString> answers_;
+    Ui::Messages *ui;
 
 };

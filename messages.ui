@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>messages</class>
- <widget class="QMainWindow" name="messages">
+ <class>Messages</class>
+ <widget class="QMainWindow" name="Messages">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>messages</string>
+   <string>Hotel Order Menu</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -35,11 +35,15 @@
     <property name="styleSheet">
      <string notr="true">QPushButton
 {
-  border: 2px solid black;
+  border: transparent;
   border-radius: 10px;
   padding: 0 8px;
   background: #ffd700;
   color: black
+}
+QPushButton:hover {
+background-color: #d9be2b; 
+color: Black;              
 }</string>
     </property>
     <property name="text">
@@ -66,11 +70,15 @@
     <property name="styleSheet">
      <string notr="true">QPushButton
 {
-  border: 2px solid black;
+  border: transparent;
   border-radius: 10px;
   padding: 0 8px;
   background: #ccff00;
   color: black
+}
+QPushButton:hover {
+background-color: #aecf2b; 
+color: Black;              
 }</string>
     </property>
     <property name="text">
@@ -92,12 +100,16 @@
     <property name="styleSheet">
      <string notr="true">QPushButton
 {
-  border: 2px solid Black;
+  border: 2px transparent;
   border-radius: 10px;
   padding: 0 8px;
   background: Blue;
  color: White
-}`</string>
+}
+QPushButton:hover {
+background-color: #1c1cad; 
+color: White;              
+}</string>
     </property>
     <property name="text">
      <string>Sleep</string>
@@ -118,10 +130,14 @@
     <property name="styleSheet">
      <string notr="true">QPushButton
 {
-  border: 2px solid black;
+  border: 2px transparent;
   border-radius: 10px;
   padding: 0 8px;
   background: Red;
+}
+QPushButton:hover {
+background-color: white; 
+color: Red;              
 }</string>
     </property>
     <property name="text">
@@ -142,6 +158,62 @@
     </property>
     <property name="text">
      <string>View Answers</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Payment">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>100</width>
+      <height>52</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+      <horstretch>100</horstretch>
+      <verstretch>52</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>52</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/new/prefix1/images/fb-share.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Payment_2">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>140</y>
+      <width>111</width>
+      <height>52</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+      <horstretch>100</horstretch>
+      <verstretch>52</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>52</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/new/prefix1/images/Google_Pay_Logo.png);</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

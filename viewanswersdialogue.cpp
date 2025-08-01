@@ -1,5 +1,6 @@
 #include "viewanswersdialogue.h"
 #include "ui_viewanswersdialogue.h"
+#include <QDebug>
 
 ViewAnswersDialogue::ViewAnswersDialogue(const QMap<QString, QString>& answers,QWidget *parent)
     : QDialog(parent)
@@ -10,13 +11,14 @@ ViewAnswersDialogue::ViewAnswersDialogue(const QMap<QString, QString>& answers,Q
 
     QString content;
 
-    for (const auto& key : answers.keys()) {
+    for (auto it = answers.begin(); it != answers.end(); ++it) {
         if(not content.isEmpty()){
             content += '\n';
         }
-        content += key + ": " + answers[key];
+        content += it.key() + ": " + it.value();
     }
 
+    qDebug()<<answers;
     ui->label->setText(content);
 }
 

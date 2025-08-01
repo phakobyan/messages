@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -41,6 +41,32 @@ else()
         add_executable(Messages
             ${PROJECT_SOURCES}
             viewanswersdialogue.h viewanswersdialogue.cpp viewanswersdialogue.ui
+            payment_arca.h
+            payment_arca.cpp payment_arca.ui
+            resources.qrc
+            login.h
+            login.cpp login.ui
+            firstwindow.h
+            firstwindow.cpp firstwindow.ui
+            reserve.h
+            reserve.cpp reserve.ui
+            creditcard.h
+            creditcard.cpp
+            room.h
+            room.cpp
+            standardroom.h
+            standardroom.cpp
+            premiumroom.h
+            premiumroom.cpp
+            luxuryroom.h
+            luxuryroom.cpp
+            selectdate.h
+            selectdate.cpp selectdate.ui
+            dbmanager.h
+            dbmanager.cpp
+
+
+
 
 
 
@@ -51,6 +77,7 @@ else()
 endif()
 
 target_link_libraries(Messages PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(Messages PRIVATE Qt${QT_VERSION_MAJOR}::Sql)
 target_link_libraries(Messages PRIVATE Qt5::Widgets)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -77,3 +104,4 @@ install(TARGETS Messages
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(Messages)
 endif()
+

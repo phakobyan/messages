@@ -1,22 +1,23 @@
 #include "messages.h"
 #include "viewanswersdialogue.h"
+#include "payment_arca.h"
 #include "ui_messages.h"
 #include <QMessageBox>
 
-messages::messages(QWidget *parent)
+Messages::Messages(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::messages)
+    , ui(new Ui::Messages)
 {
     ui->setupUi(this);
     SetConnections();
 }
 
-messages::~messages()
+Messages::~Messages()
 {
     delete ui;
 }
 
-void messages::SetConnections(){
+void Messages::SetConnections(){
     connect(ui->EatButton, &QPushButton::clicked, this, [this](){
     QMessageBox::StandardButton reply; reply = QMessageBox::question(this, "Eat", "Bring in room food?", QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes) {
@@ -54,7 +55,11 @@ void messages::SetConnections(){
         ViewAnswersDialogue ViewAnswersDialogue{answers_,this};
             ViewAnswersDialogue.setModal(true);
             ViewAnswersDialogue.exec();
+    });
 
-
-})
-        ;}
+    connect(ui->Payment, &QPushButton::clicked, this, [this](){
+        PaymentArca PaymentArca{this};
+        PaymentArca.setModal(true);
+        PaymentArca.exec();
+        });
+}
