@@ -4,8 +4,8 @@
 #include "payment_arca.h"
 #include <QString>
 #include <QMessageBox>
-
-
+//#include "dbmanager.h"
+//#include "reserve.h"
 
 PaymentArca::PaymentArca(QWidget *parent)
     : QDialog(parent)
@@ -13,6 +13,7 @@ PaymentArca::PaymentArca(QWidget *parent)
 {
     ui->setupUi(this);
     ui->Cvv->setEchoMode(QLineEdit::Password);
+    connect(ui->Ok_Cancel, &QDialogButtonBox::rejected, this, &QDialog::reject);
 }
 
 PaymentArca::~PaymentArca()
@@ -20,7 +21,7 @@ PaymentArca::~PaymentArca()
     delete ui;
 }
 
-void PaymentArca::on_Ok_Cancel_accepted()
+bool PaymentArca::on_Ok_Cancel_accepted()
 {
     auto tmp_cardnumber = ui->CardNumber->text().toStdString();
     auto tmp_expdate = ui->ExpDate->text().toStdString();
@@ -33,9 +34,14 @@ void PaymentArca::on_Ok_Cancel_accepted()
         std::cout << user.card_number() <<std::endl;
         std::cout << user.exp_date() <<std::endl;
         std::cout << user.cvv() <<std::endl;
+        accept();
+        return true;
     }
     else{
         QMessageBox::warning(this, tr("Warning"), tr("Wrong Data, Try Again."));
+        return false;
     }
+    return false;
+
 }
 

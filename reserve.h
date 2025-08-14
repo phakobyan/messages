@@ -11,7 +11,7 @@ class Reserve : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit Reserve(QWidget *parent = nullptr);
+    explicit Reserve(QString start, QString end, QWidget *parent = nullptr);
     ~Reserve();
     void CalendarChecker();
     void xary();
@@ -19,8 +19,9 @@ public:
 private:
     Ui::Reserve *ui;
     int price = 0;
+    QString startDate;
+    QString endDate;
 
 };
-
 
 

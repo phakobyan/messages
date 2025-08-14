@@ -11,11 +11,12 @@ class PaymentArca : public QDialog
     Q_OBJECT
 
 public:
-    explicit PaymentArca(QWidget *parent);//CreditCard = nullptr
+    explicit PaymentArca(QWidget *parent); //CreditCard = nullptr
+    //void on_Ok_Cancel_accepted();
     ~PaymentArca();
 
 private slots:
-    void on_Ok_Cancel_accepted();
+    bool on_Ok_Cancel_accepted();
 
 private:
     Ui::PaymentArca *ui;

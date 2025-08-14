@@ -13,8 +13,8 @@ int main(int argc, char *argv[])
     if (!DBManager::connectToDatabase("my_qt_db.sqlite")) {
         return -1;
     }
-
-    // Тут можешь вызывать другие функции, выполнять запросы и т.д.
-
+    //DBManager::createTables();
+    //DBManager::insertTestRooms();
     return a.exec();
+
 }
