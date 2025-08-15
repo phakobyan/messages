@@ -3,12 +3,15 @@
 #include "payment_arca.h"
 #include "ui_messages.h"
 #include <QMessageBox>
+#include "firstwindow.h"
+#include <QScreen>
 
 Messages::Messages(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Messages)
 {
     ui->setupUi(this);
+    this->move(QGuiApplication::primaryScreen()->geometry().center() - this->rect().center());
     SetConnections();
 }
 
@@ -62,4 +65,9 @@ void Messages::SetConnections(){
         PaymentArca.setModal(true);
         PaymentArca.exec();
         });
+    connect(ui->LogOut, &QPushButton::clicked, this, [this](){
+        FirstWindow *FW = new FirstWindow();
+        FW->show();
+        this->hide();
+    });
 }

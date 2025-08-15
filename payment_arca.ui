@@ -132,7 +132,7 @@ font: 11pt &quot;FreeMono&quot;;</string>
      <string/>
     </property>
     <property name="placeholderText">
-     <string>NAME USERNAME</string>
+     <string>NAME SURENAME</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="CardNumber">
@@ -229,38 +229,5 @@ color: rgb(255, 255, 255);</string>
   <zorder>label_3</zorder>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>Ok_Cancel</sender>
-   <signal>accepted()</signal>
-   <receiver>payment_arca</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>Ok_Cancel</sender>
-   <signal>rejected()</signal>
-   <receiver>payment_arca</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

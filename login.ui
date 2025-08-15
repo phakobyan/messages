@@ -42,6 +42,9 @@
      <string notr="true">background-color: rgb(255, 255, 255);
 border-color: rgb(28, 113, 216);</string>
     </property>
+    <property name="placeholderText">
+     <string>user</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="PasswordEdit">
     <property name="geometry">
@@ -55,6 +58,9 @@ border-color: rgb(28, 113, 216);</string>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(255, 255, 255);
 border-color: rgb(28, 113, 216);</string>
+    </property>
+    <property name="placeholderText">
+     <string>user</string>
     </property>
    </widget>
    <widget class="QLabel" name="PasswordLabel">

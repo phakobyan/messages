@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Select Date</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: #f3e8d5;</string>

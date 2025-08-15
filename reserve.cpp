@@ -10,7 +10,7 @@
 #include "dbmanager.h"
 #include <QDialog>
 #include <QButtonGroup>
-
+#include "firstwindow.h"
 
 
 Reserve::Reserve(QString start,QString end, QWidget *parent)
@@ -64,6 +64,14 @@ void Reserve::xary(){
 
         db.addRoom(/*103,*/ startDate, endDate, name, surname, email, passport, 0);
     });
+
+    connect(ui->BackButton, &QPushButton::clicked, this, [this](){
+        FirstWindow *FW = new FirstWindow();
+        FW->show();
+        this->hide();
+    });
+
+
 }
 
 

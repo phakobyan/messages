@@ -283,6 +283,25 @@ color: White;
      <string>Luxury Room - $250/night</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="BackButton">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>520</y>
+      <width>95</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(119, 118, 123);</string>
+    </property>
+    <property name="text">
+     <string>Go Back</string>
+    </property>
+   </widget>
    <zorder>Surename_R</zorder>
    <zorder>Email_R</zorder>
    <zorder>Passport</zorder>
@@ -296,6 +315,7 @@ color: White;
    <zorder>StandardRoom</zorder>
    <zorder>PremiumRoom</zorder>
    <zorder>LuxuryRoom</zorder>
+   <zorder>BackButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

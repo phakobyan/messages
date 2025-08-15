@@ -7,7 +7,6 @@ public:
     int getPrice(){
         return price;
     }
-    //static constexpr int price = 40000;
 private:
     int number_of_guests_;
     int price = 40000;
