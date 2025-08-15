@@ -62,7 +62,7 @@ void Reserve::xary(){
         PaymentArca.setModal(true);
         PaymentArca.exec();
 
-        db.addRoom(103, startDate, endDate, name, surname, email, passport, 0);
+        db.addRoom(/*103,*/ startDate, endDate, name, surname, email, passport, 0);
     });
 }
 

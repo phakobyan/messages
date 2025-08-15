@@ -6,11 +6,11 @@ bool DBManager::connectToDatabase(const QString& path) {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(path);
     if (!db.open()) {
-        qDebug() << "Ошибка подключения к базе данных:" << db.lastError().text();
+        qDebug() << "Error connecting to DB:" << db.lastError().text();
         return false;
     }
 
-    qDebug() << "База данных подключена успешно!";
+    qDebug() << "DB connected success";
     return true;
 }
 
@@ -37,7 +37,6 @@ void DBManager::createTables() {
                           "email TEXT NOT NULL,"
                           "payment_status INTEGER NOT NULL,"
                           "FOREIGN KEY(room_id) REFERENCES rooms(id));";
-    qDebug() << "Shit";
     if (!query.exec(bookingsSql)) {
         qDebug() << "Ошибка создания таблицы bookings:" << query.lastError().text();
     } else {
@@ -90,7 +89,7 @@ RoomCheckResult DBManager::hasFreeRoom(const QString& startDate, const QString& 
     }
 
     if (query.next()) {
-        qDebug() << "[SUCCESS] Найдена свободная комната.";
+        qDebug() << "[SUCCESS] Found free room.";
         return RoomCheckResult::FreeRoomExists;
     } else {
         qDebug() << "[INFO] Комнаты есть, но все заняты на указанный период.";
@@ -99,10 +98,9 @@ RoomCheckResult DBManager::hasFreeRoom(const QString& startDate, const QString& 
 }
 
 
-
+/*
 void DBManager::addRoom(const int number,const QString& startDate, const QString& endDate, const QString& name, const QString& surname,const QString& email, const QString& passport, const int PaymentStatus) {
     QSqlQuery query;
-    qDebug() << "ENER SHIT";
     query.prepare("INSERT INTO bookings (room_id, start_date, end_date, name, surname, email, passport, payment_status) "
                   "VALUES (:room_id, :start_date, :end_date, :name, :surname, :email, :passport, :payment_status)");
     query.bindValue(":room_id", number);
@@ -115,8 +113,59 @@ void DBManager::addRoom(const int number,const QString& startDate, const QString
     query.bindValue(":payment_status", PaymentStatus);
 
     if (!query.exec()) {
-        qDebug() << "Ошибка добавления комнаты:" << query.lastError().text();
+        qDebug() << "room add error:" << query.lastError().text();
     } else {
 }
+}
+*/
+
+
+void DBManager::addRoom(const QString& startDate, const QString& endDate,
+                        const QString& name, const QString& surname,
+                        const QString& email, const QString& passport,
+                        const int paymentStatus)
+{
+    QSqlQuery query;
+
+    // --- Получаем следующий room_id ---
+    int nextRoomId = 300; // стартовое значение по умолчанию
+    if (!query.exec("SELECT MAX(id) FROM rooms")) {
+        qDebug() << "Error getting max room_id:" << query.lastError().text();
+    } else if (query.next()) {
+        int lastId = query.value(0).toInt();
+        if (lastId == 0) {
+            nextRoomId = 300; // если таблица пустая
+        } else if (lastId % 100 == 12) {
+            nextRoomId = ((lastId / 100 + 1) * 100); // переход на следующую сотню
+        } else {
+            nextRoomId = lastId + 1;
+        }
+    }
+
+    // --- Создаём запись комнаты ---
+    query.prepare("INSERT INTO rooms (id, bookings) VALUES (:id, '')");
+    query.bindValue(":id", nextRoomId);
+    if (!query.exec()) {
+        qDebug() << "Error adding room:" << query.lastError().text();
+        return;
+    }
+
+    // --- Создаём бронирование ---
+    query.prepare("INSERT INTO bookings (room_id, start_date, end_date, name, surname, email, passport, payment_status) "
+                  "VALUES (:room_id, :start_date, :end_date, :name, :surname, :email, :passport, :payment_status)");
+    query.bindValue(":room_id", nextRoomId);
+    query.bindValue(":start_date", startDate);
+    query.bindValue(":end_date", endDate);
+    query.bindValue(":name", name);
+    query.bindValue(":surname", surname);
+    query.bindValue(":email", email);
+    query.bindValue(":passport", passport);
+    query.bindValue(":payment_status", paymentStatus);
+
+    if (!query.exec()) {
+        qDebug() << "Error adding booking:" << query.lastError().text();
+    } else {
+        qDebug() << "Room" << nextRoomId << "and booking added successfully.";
+    }
 }
 
