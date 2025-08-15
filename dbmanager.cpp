@@ -114,17 +114,6 @@ void DBManager::addRoom(const int number,const QString& startDate, const QString
     query.bindValue(":passport", passport);
     query.bindValue(":payment_status", PaymentStatus);
 
-
-
-    qDebug() <<  number;
-    qDebug() <<  startDate;
-    qDebug() <<  endDate;
-    qDebug() <<  name;
-    qDebug() <<  surname;
-    qDebug() <<  email;
-    qDebug() <<  passport;
-    qDebug() <<  PaymentStatus;
-
     if (!query.exec()) {
         qDebug() << "Ошибка добавления комнаты:" << query.lastError().text();
     } else {

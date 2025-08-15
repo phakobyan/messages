@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     if (!DBManager::connectToDatabase("my_qt_db.sqlite")) {
         return -1;
     }
-    //DBManager::createTables();
+    DBManager::createTables();
     //DBManager::insertTestRooms();
     return a.exec();
 
