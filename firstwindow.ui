@@ -38,7 +38,7 @@
    <string>Sand &amp; Sand Resort</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(/home/user/Desktop/messages_project/Messages/images/Sunset_at_Salt_n_Sand_Resort.png);</string>
+   <string notr="true">background-image: url(/home/user/Desktop/hotel_project/Hotel/images/Sunset_at_Salt_n_Sand_Resort.png);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="SigninButton">

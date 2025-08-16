@@ -1,26 +1,26 @@
-#include "messages.h"
+#include "hotel.h"
 #include "viewanswersdialogue.h"
 #include "payment_arca.h"
-#include "ui_messages.h"
+#include "ui_hotel.h"
 #include <QMessageBox>
 #include "firstwindow.h"
 #include <QScreen>
 
-Messages::Messages(QWidget *parent)
+Hotel::Hotel(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::Messages)
+    , ui(new Ui::Hotel)
 {
     ui->setupUi(this);
     this->move(QGuiApplication::primaryScreen()->geometry().center() - this->rect().center());
     SetConnections();
 }
 
-Messages::~Messages()
+Hotel::~Hotel()
 {
     delete ui;
 }
 
-void Messages::SetConnections(){
+void Hotel::SetConnections(){
     connect(ui->EatButton, &QPushButton::clicked, this, [this](){
     QMessageBox::StandardButton reply; reply = QMessageBox::question(this, "Eat", "Bring in room food?", QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes) {

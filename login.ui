@@ -107,7 +107,7 @@ background-color: Transparent;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(/home/user/Desktop/messages_project/Messages/images/salt_sand_.png);</string>
+     <string notr="true">background-image: url(/home/user/Desktop/hotel_project/Hotel/images/salt_sand_.png);</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Login">

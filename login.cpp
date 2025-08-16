@@ -1,6 +1,6 @@
 #include "login.h"
 #include "ui_login.h"
-#include "messages.h"
+#include "hotel.h"
 #include <QMessageBox>
 #include <QScreen>
 #include <QGuiApplication>
@@ -34,8 +34,8 @@ bool Login::DataCheck(){
 void Login::LoginButton(){
     connect(ui->Login, &QPushButton::clicked, this, [this](){
         if (DataCheck() == true){
-        Messages *messagesWindow = new Messages();
-        messagesWindow->show();
+        Hotel *HotelWindow = new Hotel();
+        HotelWindow->show();
         this->hide();
         }
         else{

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(Messages VERSION 0.1 LANGUAGES CXX)
+project(Hotel VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -14,23 +14,23 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
 
 set(PROJECT_SOURCES
         main.cpp
-        messages.cpp
-        messages.h
-        messages.ui
+        hotel.cpp
+        hotel.h
+        hotel.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(Messages
+    qt_add_executable(Hotel
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
 # Define target properties for Android with Qt 6 as:
-#    set_property(TARGET Messages APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#    set_property(TARGET Hotel APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
-        add_library(Messages SHARED
+        add_library(Hotel SHARED
             ${PROJECT_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
@@ -38,7 +38,7 @@ else()
     else()
         find_package(Qt5 REQUIRED COMPONENTS Widgets)
 
-        add_executable(Messages
+        add_executable(Hotel
             ${PROJECT_SOURCES}
             viewanswersdialogue.h viewanswersdialogue.cpp viewanswersdialogue.ui
             payment_arca.h
@@ -76,17 +76,17 @@ else()
     endif()
 endif()
 
-target_link_libraries(Messages PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(Messages PRIVATE Qt${QT_VERSION_MAJOR}::Sql)
-target_link_libraries(Messages PRIVATE Qt5::Widgets)
+target_link_libraries(Hotel PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(Hotel PRIVATE Qt${QT_VERSION_MAJOR}::Sql)
+target_link_libraries(Hotel PRIVATE Qt5::Widgets)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.Messages)
+  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.Hotel)
 endif()
-set_target_properties(Messages PROPERTIES
+set_target_properties(Hotel PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -95,13 +95,13 @@ set_target_properties(Messages PROPERTIES
 )
 
 include(GNUInstallDirs)
-install(TARGETS Messages
+install(TARGETS Hotel
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(Messages)
+    qt_finalize_executable(Hotel)
 endif()
 

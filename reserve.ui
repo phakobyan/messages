@@ -206,7 +206,7 @@ color: White;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(/home/user/Desktop/messages_project/Messages/images/Standard.jpg);</string>
+     <string notr="true">background-image: url(/home/user/Desktop/hotel_project/Hotel/images/Standard.jpg);</string>
     </property>
    </widget>
    <widget class="QWidget" name="widget_3" native="true">
@@ -219,7 +219,7 @@ color: White;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(/home/user/Desktop/messages_project/Messages/images/Premium.jpg);</string>
+     <string notr="true">background-image: url(/home/user/Desktop/hotel_project/Hotel/images/Premium.jpg);</string>
     </property>
    </widget>
    <widget class="QWidget" name="widget_2" native="true">
@@ -232,7 +232,7 @@ color: White;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(/home/user/Desktop/messages_project/Messages/images/Luxury1.jpg);</string>
+     <string notr="true">background-image: url(/home/user/Desktop/hotel_project/Hotel/images/Luxury1.jpg);</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="StandardRoom">
