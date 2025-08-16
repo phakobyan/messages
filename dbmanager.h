@@ -14,6 +14,6 @@ public:
     static void createTables();
     static RoomCheckResult hasFreeRoom(const QString& startDate, const QString& endDate);
     static void insertTestRooms();
-    void addRoom(/*const int number,*/const QString& startDate, const QString& endDate, const QString& name, const QString& surename,const QString& email, const QString& passport, const int PaymentStatus);
+    void addRoom(const QString& startDate, const QString& endDate, const QString& name, const QString& surename,const QString& email, const QString& passport, const int PaymentStatus);
 };
 

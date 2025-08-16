@@ -14,8 +14,6 @@
 
 
 Reserve::Reserve(QString start,QString end, QWidget *parent)
-  //  : QDialog(parent), startDate(start), endDate(end) {
-  //  setupUi(this);
     : QMainWindow(parent)
     , ui(new Ui::Reserve)
     , startDate(start)
@@ -26,10 +24,6 @@ Reserve::Reserve(QString start,QString end, QWidget *parent)
     xary();
 }
 
-Reserve::~Reserve()
-{
-    delete ui;
-}
 
 void Reserve::xary(){
 
@@ -62,16 +56,23 @@ void Reserve::xary(){
         PaymentArca.setModal(true);
         PaymentArca.exec();
 
-        db.addRoom(/*103,*/ startDate, endDate, name, surname, email, passport, 0);
+        db.addRoom(startDate, endDate, name, surname, email, passport, 0);
+
     });
 
     connect(ui->BackButton, &QPushButton::clicked, this, [this](){
         FirstWindow *FW = new FirstWindow();
         FW->show();
         this->hide();
+
     });
 
 
+}
+
+Reserve::~Reserve()
+{
+    delete ui;
 }
 
 

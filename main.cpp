@@ -14,7 +14,6 @@ int main(int argc, char *argv[])
         return -1;
     }
     DBManager::createTables();
-    //DBManager::insertTestRooms();
     return a.exec();
 
 }

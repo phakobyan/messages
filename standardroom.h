@@ -9,5 +9,5 @@ public:
     }
 private:
     int number_of_guests_;
-    int price = 20000;
+    const int price = 120;
 };

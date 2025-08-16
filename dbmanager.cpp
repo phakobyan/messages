@@ -40,17 +40,17 @@ void DBManager::createTables() {
     if (!query.exec(bookingsSql)) {
         qDebug() << "Ошибка создания таблицы bookings:" << query.lastError().text();
     } else {
-        qDebug() << "Таблица bookings создана.";
+        qDebug() << "Table bookings created.";
     }
 }
 
 
 RoomCheckResult DBManager::hasFreeRoom(const QString& startDate, const QString& endDate) {
-    // Сначала проверим, есть ли вообще комнаты
+    //is available any room
     QSqlQuery roomQuery("SELECT COUNT(*) FROM rooms");
     if (!roomQuery.exec() || !roomQuery.next()) {
         qDebug() << "[ERROR] Ошибка при проверке количества комнат:" << roomQuery.lastError().text();
-        return RoomCheckResult::NoRooms; // или выбросить исключение
+        return RoomCheckResult::NoRooms;
     }
 
     int totalRooms = roomQuery.value(0).toInt();
@@ -59,7 +59,7 @@ RoomCheckResult DBManager::hasFreeRoom(const QString& startDate, const QString& 
         return RoomCheckResult::NoRooms;
     }
 
-    // Проверим наличие свободных комнат
+//requesting free rooms
     QSqlQuery query;
 
     query.prepare(R"(
@@ -84,7 +84,7 @@ RoomCheckResult DBManager::hasFreeRoom(const QString& startDate, const QString& 
     query.bindValue(":end", endDate);
 
     if (!query.exec()) {
-        qDebug() << "[ERROR] Ошибка выполнения SQL-запроса:" << query.lastError().text();
+        qDebug() << "[ERROR] SQL request Error" << query.lastError().text();
         return RoomCheckResult::NoFreeRooms;
     }
 
@@ -92,32 +92,11 @@ RoomCheckResult DBManager::hasFreeRoom(const QString& startDate, const QString& 
         qDebug() << "[SUCCESS] Found free room.";
         return RoomCheckResult::FreeRoomExists;
     } else {
-        qDebug() << "[INFO] Комнаты есть, но все заняты на указанный период.";
+        qDebug() << "[INFO] All rooms are busy for this time.";
         return RoomCheckResult::NoFreeRooms;
     }
 }
 
-
-/*
-void DBManager::addRoom(const int number,const QString& startDate, const QString& endDate, const QString& name, const QString& surname,const QString& email, const QString& passport, const int PaymentStatus) {
-    QSqlQuery query;
-    query.prepare("INSERT INTO bookings (room_id, start_date, end_date, name, surname, email, passport, payment_status) "
-                  "VALUES (:room_id, :start_date, :end_date, :name, :surname, :email, :passport, :payment_status)");
-    query.bindValue(":room_id", number);
-    query.bindValue(":start_date", startDate);
-    query.bindValue(":end_date", endDate);
-    query.bindValue(":name", name);
-    query.bindValue(":surname", surname);
-    query.bindValue(":email", email);
-    query.bindValue(":passport", passport);
-    query.bindValue(":payment_status", PaymentStatus);
-
-    if (!query.exec()) {
-        qDebug() << "room add error:" << query.lastError().text();
-    } else {
-}
-}
-*/
 
 
 void DBManager::addRoom(const QString& startDate, const QString& endDate,
@@ -127,22 +106,20 @@ void DBManager::addRoom(const QString& startDate, const QString& endDate,
 {
     QSqlQuery query;
 
-    // --- Получаем следующий room_id ---
-    int nextRoomId = 300; // стартовое значение по умолчанию
+    int nextRoomId = 300;
     if (!query.exec("SELECT MAX(id) FROM rooms")) {
         qDebug() << "Error getting max room_id:" << query.lastError().text();
     } else if (query.next()) {
         int lastId = query.value(0).toInt();
         if (lastId == 0) {
-            nextRoomId = 300; // если таблица пустая
+            nextRoomId = 300;
         } else if (lastId % 100 == 12) {
-            nextRoomId = ((lastId / 100 + 1) * 100); // переход на следующую сотню
+            nextRoomId = ((lastId / 100 + 1) * 100);
         } else {
             nextRoomId = lastId + 1;
         }
     }
 
-    // --- Создаём запись комнаты ---
     query.prepare("INSERT INTO rooms (id, bookings) VALUES (:id, '')");
     query.bindValue(":id", nextRoomId);
     if (!query.exec()) {
@@ -150,7 +127,7 @@ void DBManager::addRoom(const QString& startDate, const QString& endDate,
         return;
     }
 
-    // --- Создаём бронирование ---
+
     query.prepare("INSERT INTO bookings (room_id, start_date, end_date, name, surname, email, passport, payment_status) "
                   "VALUES (:room_id, :start_date, :end_date, :name, :surname, :email, :passport, :payment_status)");
     query.bindValue(":room_id", nextRoomId);
